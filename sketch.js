@@ -8,10 +8,11 @@ var tower;
 var towerImagem;
 var cannon;
 var angle;
+var cannonBall
 
 function preload() {
  imagemDeFundo = loadImage("./assets/background.gif");
- towerImagem = loadImage("/assets/tower.png");
+ towerImagem = loadImage("./assets/tower.png");
 }
 
 function setup() {
@@ -30,8 +31,11 @@ function setup() {
  tower = Bodies.rectangle(160,350,160,310,options);
  World.add(world,tower);
 
+ angleMode(DEGREES);
  angle = 20;
  cannon = new Cannon(180, 110, 130, 100, angle);
+
+ cannonBall = new CannonBall(cannon.x, cannon.y);
  
 }
 
@@ -48,4 +52,11 @@ function draw() {
  pop();
 
  cannon.display();
+ cannonBall.display();
+}
+
+function keyReleased(){
+  if(keyCode === DOWN_ARROW){
+    cannonBall.shoot();
+  }
 }
