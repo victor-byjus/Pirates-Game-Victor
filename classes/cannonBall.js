@@ -55,4 +55,16 @@ class CannonBall {
         //Adiciona velocidade à bola
         Matter.Body.setVelocity(this.body, {x: velocity.x * (180/3.14), y: velocity.y * (180/3.14)});
     }
+
+    //Configurações para apagar a bala de canhão
+    remove(index){
+        //Zera a velocidade da bala de canhão
+        Matter.Body.setVelocity(this.body,{x:0, y:0});
+        //Coloca um atraso de 1 segundo
+        setTimeout(()=>{
+            //Apaga a bala de canhão e sua informação
+            Matter.World.remove(world, this.body);
+            delete balls[index];
+        }, 1000);        
+    }
 }
